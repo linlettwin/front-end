@@ -53,9 +53,9 @@ jobs:
             aws-region: ${{ vars.AWS_DEFAULT_REGION }}
       
       - name: Set up kubectl for Amazon EKS
-      run: aws eks --region ${{ vars.AWS_DEFAULT_REGION}} update-kubeconfig --name ${{ vars.AWS_EKS_CLUSTER_NAME}}
+        run: aws eks --region ${{ vars.AWS_DEFAULT_REGION}} update-kubeconfig --name ${{ vars.AWS_EKS_CLUSTER_NAME}}
 
-    - name: Deploy to Amazon EKS
-      run: |
-        kubectl delete -f front-deployment.yml --namespace ${{ vars.AWS_EKS_NAMESPACE}}
-        kubectl apply -f front-deployment.yml --namespace ${{ vars.AWS_EKS_NAMESPACE}}
+      - name: Deploy to Amazon EKS
+        run: |
+          kubectl delete -f front-deployment.yml --namespace ${{ vars.AWS_EKS_NAMESPACE}}
+          kubectl apply -f front-deployment.yml --namespace ${{ vars.AWS_EKS_NAMESPACE}}
